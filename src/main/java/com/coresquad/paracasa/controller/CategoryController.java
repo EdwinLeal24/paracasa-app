@@ -10,54 +10,63 @@ import org.springframework.web.bind.annotation.*;
 
 
 @Controller
-//@RequestMapping(path="/category")
 public class CategoryController {
 
     @Autowired
     private CategoryRepo categoryRepo;
 
+    // Lista todas las categorias
     @GetMapping("/categories")
     public String getAllUsers(Model model) {
         model.addAttribute("categories", categoryRepo.findAll());
         return "categories";
     }
 
-    // TODO - Edwin: Modificar los endpoints para que devuelvan una plantilla como "getAllUsers"
-    @PostMapping(path="/add")
-    public @ResponseBody
-    String addNewCategory (@RequestBody String category) {
-        Category categoryDB = new Category();
-        categoryDB.setCategoria(category);
-        categoryRepo.save(categoryDB);
-        return "Saved";
+    // form para crear nueva categoria
+    @GetMapping("/categories/new")
+    public String createCategory (Model model) {
+
+        Category category = new Category(); // Objeto que guardara los valores
+
+        model.addAttribute("category", category);
+        return "create_category";
     }
 
-    @GetMapping(path = "/categories/{id}")
-    public @ResponseBody Category getOneCategory(@PathVariable Integer id) {
+    // guarda una categoria
+    @PostMapping("/categories")
+    public String saveCategory (@ModelAttribute("category") Category category) {
+        categoryRepo.save(category);
+        return "redirect:/categories";
+    }
+
+    // form para editar una categoria
+    @GetMapping(path = "/categories/edit/{id}")
+    public String editCategoryForm(@PathVariable Integer id, Model model) {
         Category category = categoryRepo.findById(id).orElseThrow(() -> new CategoryNotFoundException(id));
-        return category;
+        model.addAttribute("category", category);
+        return "edit_category";
     }
 
-    @PutMapping("/categories/{id}")
-    public @ResponseBody Category updateCategory(@RequestBody Category newCategory, @PathVariable Integer id) {
+    //Guarda una categoria editada
+    @PostMapping("/categories/{id}")
+    public String updateCategory(@PathVariable Integer id, @ModelAttribute("category") Category category, Model model) {
+        // Saca la categoria de la BD por su ID
+        Category existentCategory = categoryRepo.findById(id).orElseThrow(() -> new CategoryNotFoundException(id));
 
-        return categoryRepo.findById(id)
-                .map(category -> {
-                    category.setCategoria(newCategory.getCategoria());
-                    category.setPlatos(newCategory.getPlatos());
-                    return categoryRepo.save(category);
-                })
-                .orElseGet(() -> {
-                    newCategory.setId(id);
-                    return categoryRepo.save(newCategory);
-                });
+        // Actualiza
+        existentCategory.setId(id);
+        existentCategory.setCategoria(category.getCategoria());
+
+        // Guarda
+        categoryRepo.save(existentCategory);
+        return "redirect:/categories";
     }
 
-    @DeleteMapping("/categories/{id}")
-    public @ResponseBody String
-    deleteEmployee(@PathVariable Integer id) {
+    //Elimina una categoria
+    @GetMapping("/categories/{id}")
+    public String deleteCategory(@PathVariable Integer id) {
         categoryRepo.deleteById(id);
-        return "Categoria " + id + " eliminada correctamente!";
+        return "redirect:/categories";
     }
 
 
