@@ -14,3 +14,37 @@
     border-radius: 10px;
     box-shadow: 0 0 10px #9a9a9a;
 }
+
+.header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    height: 50px;
+    align-items: center;
+    background-color: #1e2a3e;
+    padding: 10px 30px;
+}
+
+.logo {
+    font-weight: bolder;
+    color: white;
+}
+
+.menu-list {
+    display: flex;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.menu-item {
+    width: 100px;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+}
+
+.menu-item a {
+    color: white;
+    text-decoration: none;
+}
