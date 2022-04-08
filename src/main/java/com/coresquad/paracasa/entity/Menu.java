@@ -12,6 +12,17 @@ public class Menu {
     @Column(nullable = false)
     private String nombre;
 
+    private String descripcion;
+    private Float precio;
+
+    @ManyToMany(cascade =  CascadeType.ALL)
+    @JoinTable(
+            name = "menu_dish",
+            joinColumns = @JoinColumn(name = "id_plato", referencedColumnName = "id", nullable = false),
+            inverseJoinColumns = @JoinColumn(name = "id_menu", referencedColumnName = "id", nullable = false)
+    )
+    private List<Dish> platos;
+
     public Integer getId() {
         return id;
     }
@@ -51,15 +62,4 @@ public class Menu {
     public void setPlatos(List<Dish> platos) {
         this.platos = platos;
     }
-
-    private String descripcion;
-    private Float precio;
-
-    @ManyToMany(cascade =  CascadeType.ALL)
-    @JoinTable(
-            name = "menu_dish",
-            joinColumns = @JoinColumn(name = "id_plato", referencedColumnName = "id", nullable = false),
-            inverseJoinColumns = @JoinColumn(name = "id_menu", referencedColumnName = "id", nullable = false)
-    )
-    private List<Dish> platos;
 }
