@@ -1,0 +1,30 @@
+.menu-head {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.menu-title {
+  margin-right: 30px;
+}
+
+.container-menus {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: space-evenly;
+}
+
+.menu-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.item-action {
+  display: flex;
+  justify-content: space-between;
+}
+.icon {
+  font-size: 2rem;
+}
