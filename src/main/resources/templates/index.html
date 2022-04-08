@@ -9,10 +9,18 @@
 <body>
     <div class="container">
         <section class="container-welcome">
-            <h1 class="title">Bienvenido a Para Casa!</h1>
-            <a th:href="@{/categories}">
-                <button class="btn btn-outline-info mt-2" type="button">Entrar</button>
-            </a>
+            <h1 class="title">Bienvenido a ¡Para Casa!</h1>
+            <div class="d-flex justify-content-center">
+                <a class="menu-item" th:href="@{/categories}">
+                    <button class="btn btn-outline-info mt-2" type="button">Categorías</button>
+                </a>
+                <a class="menu-item" th:href="@{/dishes}">
+                    <button class="btn btn-outline-info mt-2" type="button">Platos</button>
+                </a>
+                <a class="menu-item" th:href="@{/menus}">
+                    <button class="btn btn-outline-info mt-2" type="button">Menús</button>
+                </a>
+            </div>
         </section>
     </div>
 </body>

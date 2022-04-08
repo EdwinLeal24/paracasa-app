@@ -36,3 +36,7 @@ button {
   top: 20px;
   left: 20px;
 }
+
+.menu-item {
+  margin: 0 10px;
+}
