@@ -1,0 +1,16 @@
+.item_desc {
+  font-size: 12px;
+  color: gray;
+  width: 33%;
+  display: flex;
+  justify-content: center;
+}
+.item_desc p {
+  text-align: left;
+}
+
+.item-info-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}

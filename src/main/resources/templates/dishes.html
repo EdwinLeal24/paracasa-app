@@ -29,7 +29,12 @@
             </div>
             <h4 id="show_modal_edit">
                 <li th:each="dish: ${dishes}" class="my-2 list-item">
-                    <span th:text="${dish.nombre}" />
+                    <span th:text="${dish.nombre}" /><br>
+                    <div class="item-info-container">
+                        <span class="item_desc"><p th:text="${dish.descripcion}" /></span>
+                        <span class="item_desc"><p th:text="${dish.calorias} + ' Kcal'" /></span>
+                        <span class="item_desc"><p th:text="${dish.precio} + ' €'" /></span>
+                    </div>
                     <div class="item-action">
                         <a th:href="@{/dishes/edit/{id} (id=${dish.id})}">
                             <span class="text-end">✏️</span>
