@@ -30,16 +30,16 @@
               placeholder="Patatas Fritas" />
             <label>Descripción</label>
             <input type="text" name="descripcion" th:field="*{descripcion}" class="form-control mb-3"
-                   placeholder="Patatas Fritas Descr" />
+              placeholder="Patatas Fritas Descr" />
             <label>Calorías</label>
-            <input type="text" name="calorias" th:field="*{calorias}" class="form-control mb-3"
-                   placeholder="350" />
+            <input type="text" name="calorias" th:field="*{calorias}" class="form-control mb-3" placeholder="350" />
             <label>Precio</label>
-            <input type="number" name="precio" th:field="*{precio}" class="form-control mb-3"
-                   placeholder="3.50" />
+            <input type="number" name="precio" th:field="*{precio}" class="form-control mb-3" placeholder="3.50" />
             <label>Tipo de Plato (Debe existir el id)</label>
-            <input type="number" name="tipo" th:field="*{tipo}" class="form-control mb-3"
-                   placeholder="1" />
+            <select th:field="${dish.categorias}" name="categorias" class="form-select"
+              aria-label="Default select example" multiple="true">
+              <option th:each="category: ${categories}" th:value="${category.id}" th:text="${category.categoria}" />
+            </select>
           </div>
           <div class="form-group">
             <div class="box-footer">

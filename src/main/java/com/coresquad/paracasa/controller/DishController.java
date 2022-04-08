@@ -1,7 +1,7 @@
 package com.coresquad.paracasa.controller;
 
 import com.coresquad.paracasa.entity.Dish;
-import com.coresquad.paracasa.exception.DishNotFoundException;
+import com.coresquad.paracasa.repository.CategoryRepo;
 import com.coresquad.paracasa.repository.DishRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,12 +11,14 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
-
 @Controller
 public class DishController {
 
     @Autowired
     private DishRepo dishRepo;
+
+    @Autowired
+    private CategoryRepo categoryRepo;
 
     // Lista todos los platos
     @GetMapping("/dishes")
@@ -28,17 +30,18 @@ public class DishController {
 
     // form para crear nuevo plato
     @GetMapping("/dishes/new")
-    public String createDish (Model model) {
+    public String createDish(Model model) {
 
         Dish dish = new Dish(); // Objeto que guardara los valores
 
         model.addAttribute("dish", dish);
+        model.addAttribute("categories", categoryRepo.findAll());
         return "create_dish";
     }
 
     // guarda un plato
     @PostMapping("/dishes")
-    public String saveDish (@ModelAttribute("dish") Dish dish) {
+    public String saveDish(@ModelAttribute("dish") Dish dish) {
         dishRepo.save(dish);
         return "redirect:/dishes";
     }
@@ -51,7 +54,7 @@ public class DishController {
         return "edit_dish";
     }
 
-    //Guarda una categoria editada
+    // Guarda una categoria editada
     @PostMapping("/dishes/{id}")
     public String updateCategory(@PathVariable Integer id, @ModelAttribute("dish") Dish dish, Model model) {
         // Saca el plato de la BD por su ID
@@ -69,12 +72,11 @@ public class DishController {
         return "redirect:/dishes";
     }
 
-    //Elimina un plato
+    // Elimina un plato
     @GetMapping("/dishes/{id}")
     public String deleteDish(@PathVariable Integer id) {
         dishRepo.deleteById(id);
         return "redirect:/dishes";
     }
-
 
 }
