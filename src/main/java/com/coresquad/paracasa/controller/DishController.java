@@ -3,6 +3,8 @@ package com.coresquad.paracasa.controller;
 import com.coresquad.paracasa.entity.Dish;
 import com.coresquad.paracasa.repository.CategoryRepo;
 import com.coresquad.paracasa.repository.DishRepo;
+import com.coresquad.paracasa.repository.TypeRepo;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,10 +22,14 @@ public class DishController {
     @Autowired
     private CategoryRepo categoryRepo;
 
+    @Autowired
+    private TypeRepo typeRepo;
+
     // Lista todos los platos
     @GetMapping("/dishes")
     public String getAllUsers(Model model) {
         model.addAttribute("dishes", dishRepo.findAll());
+        model.addAttribute("types", typeRepo.findAll());
 
         return "dishes";
     }
@@ -36,6 +42,7 @@ public class DishController {
 
         model.addAttribute("dish", dish);
         model.addAttribute("categories", categoryRepo.findAll());
+        model.addAttribute("types", typeRepo.findAll());
         return "create_dish";
     }
 
@@ -51,6 +58,8 @@ public class DishController {
     public String editDishForm(@PathVariable Integer id, Model model) {
         Dish dish = dishRepo.findById(id).orElseThrow(() -> new DishNotFoundException(id));
         model.addAttribute("dish", dish);
+        model.addAttribute("categories", categoryRepo.findAll());
+        model.addAttribute("types", typeRepo.findAll());
         return "edit_dish";
     }
 
