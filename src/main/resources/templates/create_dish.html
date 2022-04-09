@@ -8,6 +8,7 @@
     integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
   <link rel="stylesheet" th:href="@{/css/index.css}" />
   <link rel="stylesheet" th:href="@{/css/categories.css}" />
+  <link rel="stylesheet" th:href="@{/css/dishes.css}" />
 
 </head>
 
@@ -21,26 +22,58 @@
 
     <div class="container-categories create-category p-5">
       <h1 class="text-center">Añadir nuevo plato </h1>
-      <div class="card-body">
+      <div class="create-dish-form">
 
         <form th:action="@{/dishes}" th:object="${dish}" method="POST">
+          <!-- INPUT FOR DISH NAME -->
           <div class="form-group create-form">
             <label>Plato</label>
-            <input type="text" name="dish" th:field="*{nombre}" class="form-control mb-3"
-              placeholder="Patatas Fritas" />
-            <label>Descripción</label>
-            <input type="text" name="descripcion" th:field="*{descripcion}" class="form-control mb-3"
-              placeholder="Patatas Fritas Descr" />
-            <label>Calorías</label>
-            <input type="text" name="calorias" th:field="*{calorias}" class="form-control mb-3" placeholder="350" />
-            <label>Precio</label>
-            <input type="number" name="precio" th:field="*{precio}" class="form-control mb-3" placeholder="3.50" />
-            <label>Tipo de Plato (Debe existir el id)</label>
-            <select th:field="${dish.categorias}" name="categorias" class="form-select"
-              aria-label="Default select example" multiple="true">
-              <option th:each="category: ${categories}" th:value="${category.id}" th:text="${category.categoria}" />
-            </select>
+            <input type="text" name="dish" th:field="*{nombre}" class="form-control mb-3 mt-1"
+              placeholder="Patatas Fritas" required />
           </div>
+
+          <div class="row">
+            <!-- INPUT FOR DISH CALORIES -->
+            <div class="form-group col-md-6">
+              <label>Calorías</label>
+              <input type="text" name="calorias" th:field="*{calorias}" class="form-control mb-3 mt-1" placeholder="350"
+                required />
+            </div>
+
+            <!-- INPUT FOR DISH PRICE -->
+            <div class="form-group col-md-6">
+              <label>Precio</label>
+              <input type="number" step=".01" name="precio" th:field="*{precio}" class="form-control mb-3 mt-1"
+                placeholder="3.50" required />
+            </div>
+          </div>
+
+          <div class="row">
+            <!-- INPUT FOR DISH CATEGORIES -->
+            <div class="form-group col-md-6">
+              <label>Categoría del plato</label>
+              <select th:field="${dish.categorias}" name="categorias" class="form-select mt-1"
+                aria-label="Default select example" multiple="true">
+                <option th:each="category: ${categories}" th:value="${category.id}" th:text="${category.categoria}" />
+              </select>
+            </div>
+
+            <!-- INPUT FOR DISH TYPE -->
+            <div class="form-group col-md-6">
+              <label>Tipo de Plato</label>
+              <select th:field="${dish.tipo}" name="tipo" class="form-select mt-1" aria-label="Selecciona un tipo">
+                <option th:each="type: ${types}" th:value="${type.id}" th:text="${type.tipo}" />
+              </select>
+            </div>
+          </div>
+
+          <!-- INPUT FOR DISH DESCRIPTION -->
+          <div class="form-group">
+            <label for="descripcion">Descripción</label>
+            <textarea name="descripcion" th:field="*{descripcion}" class="form-control mb-3 mt-1" id="descripcion"
+              rows="3" placeholder="Patatas Fritas con..." />
+          </div>
+
           <div class="form-group">
             <div class="box-footer">
               <button type="submit" class="btn btn-success">Guardar 💾</button>

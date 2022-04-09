@@ -8,45 +8,59 @@
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
     <link rel="stylesheet" th:href="@{/css/index.css}" />
     <link rel="stylesheet" th:href="@{/css/dishes.css}" />
-    <!-- <link rel="stylesheet" href="../static/css/categories.css" /> -->
     <title>¡Para Casa! - Platos</title>
 </head>
 
 <body>
-    <div class="container">
-        <a href="/">
+    <div class="container container_dishes pt-5">
+        <a href="/menus">
             <button type="text" class="btn btn-outline-dark back-button">
                 ⬅️ Volver
             </button>
         </a>
 
-        <section class="container-categories">
-            <div class="container-categories_head">
-                <h1 class="list-title">Lista de todos los Platos</h1>
+        <section class="container-dishes">
+            <div class="container-dishes_head">
+                <h1 class="list-title">Lista de Platos</h1>
                 <a th:href="@{/dishes/new}">
                     <button class="btn btn-outline-dark" type="button">✚</button>
                 </a>
             </div>
-            <h4 id="show_modal_edit">
-                <li th:each="dish: ${dishes}" class="my-2 list-item">
-                    <span th:text="${dish.nombre}" /><br>
-                    <div class="item-info-container">
-                        <span class="item_desc"><p th:text="${dish.descripcion}" /></span>
-                        <span class="item_desc"><p th:text="${dish.calorias} + ' Kcal'" /></span>
-                        <span class="item_desc"><p th:text="${dish.precio} + ' €'" /></span>
+            <ul class="dishes-list">
+                <li th:each="dish: ${dishes}" class="list-item">
+                    <div class="item-head">
+                        <h4 th:text="${dish.nombre}" />
+                        <span class="dish-type" th:text="${dish.tipo.tipo}"></span>
                     </div>
-                    <div class="item-action">
-                        <a th:href="@{/dishes/edit/{id} (id=${dish.id})}">
-                            <span class="text-end">✏️</span>
-                        </a>
-                        <button type="button">
-                            <a th:href="@{/dishes/{id} (id=${dish.id})}">
-                                <span>🗑</span>
+                    <div class="item-info-container">
+                        <span class="item_desc">
+                            <p th:text="${dish.descripcion}" />
+                            <p><strong>Categorias:</strong></p>
+                            <p th:each="category : ${dish.categorias}" th:text="'📍 ' + ${category.categoria}">
+                            </p>
+                            <p th:if="${#lists.isEmpty(dish.categorias)}">Este plato no tiene categorias 🤷‍♂️
+                            </p>
+                        </span>
+                        <span class="item_desc">
+                            <p th:text="${dish.calorias} + ' Kcal'" />
+                        </span>
+                    </div>
+                    <div class="item-footer">
+                        <p th:text="${dish.precio} + ' €'" />
+
+                        <div class="item-action">
+                            <a th:href="@{/dishes/edit/{id} (id=${dish.id})}">
+                                <span class="text-end">✏️</span>
                             </a>
-                        </button>
+                            <button type="button">
+                                <a th:href="@{/dishes/{id} (id=${dish.id})}">
+                                    <span>🗑</span>
+                                </a>
+                            </button>
+                        </div>
                     </div>
                 </li>
-            </h4>
+            </ul>
         </section>
     </div>
 </body>
