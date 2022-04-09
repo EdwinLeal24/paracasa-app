@@ -13,7 +13,7 @@
 
 <body>
   <div class="container">
-    <a th:href="@{/menu}">
+    <a th:href="@{/menus}">
       <button type="text" class="btn btn-outline-dark back-button">
         ⬅️ Volver
       </button>
@@ -39,7 +39,7 @@
           <!-- SELECT PARA ELEGIR PLATOS -->
           <div class="form-group">
             <label for="platos">Selecciona los platos para este menú</label>
-            <select th:field="*{menu.platos}" multiple class="form-control" id="platos">
+            <select th:field="*{platos}" multiple class="form-control" id="platos">
               <option th:each="plato: ${dishes}" th:value="${plato.id}" th:text="${plato.nombre}" />
             </select>
           </div>

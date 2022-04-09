@@ -37,12 +37,12 @@
           </div>
 
           <!-- SELECT PARA ELEGIR PLATOS -->
-          <!-- <div class="form-group">
+          <div class="form-group">
             <label for="platos">Selecciona los platos para este menú</label>
-            <select th:field="*{platos.platos}" multiple class="form-control" id="platos">
+            <select th:field="*{platos}" multiple class="form-control" id="platos">
               <option th:each="plato: ${platos}" th:value="${plato.id}" th:text="${plato.nombre}" />
             </select>
-          </div> -->
+          </div>
 
           <!-- DESCRIPCIÓN DEL MENU -->
           <div class="form-group">

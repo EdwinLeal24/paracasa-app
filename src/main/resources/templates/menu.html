@@ -36,21 +36,25 @@
     <div class="container-menus mt-4">
 
       <li th:each="menu: ${menus}" class="my-2 py-2 menu-item">
-        <h4>
+        <h4 class="item-title">
           <span th:text="${menu.nombre}" />
         </h4>
-        <span th:text="${menu.descripcion}" />
-        <p>Precio:<span th:text="${menu.precio}" /><span> €</span></p>
-        <span th:each="plato: ${menu.platos}" th:text="${plato.nombre}" />
-        <div class="item-action">
-          <a th:href="@{/menu/edit/{id} (id=${menu.id})}">
-            <span class="icon">✏️</span>
-          </a>
-          <button type="button">
-            <a th:href="@{/menu/{id} (id=${menu.id})}">
-              <span class="icon">🗑</span>
+        <div class="item-body" th:if="${menu.descripcion}">
+          <span th:text="${menu.descripcion}" />
+          <span th:each="plato: ${menu.platos}" th:text="'🍽 ' + ${plato.nombre}" />
+        </div>
+        <div class="item-footer">
+          <p th:text="'Precio: ' + ${menu.precio} + ' €'" />
+          <div>
+            <a th:href="@{/menu/edit/{id} (id=${menu.id})}">
+              <span class="icon">✏️</span>
             </a>
-          </button>
+            <button type="button">
+              <a th:href="@{/menu/{id} (id=${menu.id})}">
+                <span class="icon">🗑</span>
+              </a>
+            </button>
+          </div>
         </div>
       </li>
     </div>
