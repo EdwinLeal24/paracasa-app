@@ -13,13 +13,13 @@
 
 <body>
   <div class="container">
-    <a th:href="@{/menu}">
+    <a th:href="@{/menus}">
       <button type="text" class="btn btn-outline-dark back-button">
         ⬅️ Volver
       </button>
     </a>
 
-    <div class="container-menus create-menu">
+    <div class="container-form-menu">
       <h1 class="text-center"> Editando: <span th:text="${menu.nombre}" /></h1>
       <div class="card-body">
         <form th:action="@{/menu/{id} (id=${menu.id})}" th:object="${menu}" method="POST">

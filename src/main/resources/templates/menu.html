@@ -19,7 +19,7 @@
     <div class="row pt-5">
       <a href="/">
         <button type="text" class="btn btn-outline-dark back-button">
-          ⬅️ Volver
+          🏠 Home
         </button>
       </a>
 
@@ -27,6 +27,18 @@
         <h1 class="menu-title mr-5">Nuestros menús</h1>
         <a th:href="@{/menu/create}">
           <button class="btn btn-outline-dark" type="button">✚</button>
+        </a>
+      </section>
+
+      <section class="menu-nav">
+        <a class="menu-item" th:href="@{/categories}">
+          <button class="btn btn-outline-secondary" type="button">Categorías</button>
+        </a>
+        <a class="menu-item" th:href="@{/dishes}">
+          <button class="btn btn-outline-secondary" type="button">Platos</button>
+        </a>
+        <a class="menu-item" th:href="@{/types}">
+          <button class="btn btn-outline-secondary" type="button">Tipos</button>
         </a>
       </section>
 
@@ -40,8 +52,11 @@
           <span th:text="${menu.nombre}" />
         </h4>
         <div class="item-body" th:if="${menu.descripcion}">
-          <span th:text="${menu.descripcion}" />
+          <p th:text="${menu.descripcion}" />
+          <p th:if="${not #lists.isEmpty(menu.platos)}"><strong>incluye:</strong></p>
           <span th:each="plato: ${menu.platos}" th:text="'🍽 ' + ${plato.nombre}" />
+          <p th:if="${#lists.isEmpty(menu.platos)}">Parece que este menu no tiene ningun plato! Corre a añadir 🏃‍♂️
+          </p>
         </div>
         <div class="item-footer">
           <p th:text="'Precio: ' + ${menu.precio} + ' €'" />
