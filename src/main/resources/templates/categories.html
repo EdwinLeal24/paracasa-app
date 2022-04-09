@@ -8,19 +8,18 @@
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
     <link rel="stylesheet" th:href="@{/css/index.css}" />
     <link rel="stylesheet" th:href="@{/css/categories.css}" />
-    <!-- <link rel="stylesheet" href="../static/css/categories.css" /> -->
     <title>Para Casa! - Categorias</title>
 </head>
 
 <body>
     <div class="container">
-        <a href="/">
+        <a href="/menus">
             <button type="text" class="btn btn-outline-dark back-button">
                 ⬅️ Volver
             </button>
         </a>
 
-        <section class="container-categories">
+        <section class="container-categories py-3">
             <div class="container-categories_head">
                 <h1 class="list-title">Lista de categorias</h1>
                 <a th:href="@{/categories/new}">
