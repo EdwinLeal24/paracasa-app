@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+  <link rel="stylesheet" th:href="@{/css/index.css}" />
+  <link rel="stylesheet" th:href="@{/css/types.css}" />
+  <title>Para Casa! - Types</title>
+</head>
+
+<body>
+  <div class="container">
+    <a href="/menus">
+      <button type="text" class="btn btn-outline-dark back-button">
+        ⬅ Volver
+      </button>
+    </a>
+
+    <section class="container-types">
+      <div class="container-types_head">
+        <h1 class="list-title">Tipos de plato</h1>
+        <a th:href="@{/type/add}">
+          <button class="btn btn-outline-dark" type="button">✚</button>
+        </a>
+      </div>
+      <ul class="items-container">
+        <li th:each="type: ${types}" class="my-2 list-items">
+          <span class="mr-3" th:text="${type.tipo}" />
+          <div class="item-action">
+            <a th:href="@{/types/edit/{id} (id=${type.id})}">
+              <span class="text-end">✏️</span>
+            </a>
+          </div>
+          <button type="button" class="delete-button">
+            <a th:href="@{/types/{id} (id=${type.id})}">
+              ✖️
+            </a>
+          </button>
+        </li>
+      </ul>
+      <h4 th:unless="${not #lists.isEmpty(types)}">No se ha añadido ningun tipo de plato aun!</h4>
+    </section>
+  </div>
+</body>
+
+</html>
