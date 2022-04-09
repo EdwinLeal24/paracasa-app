@@ -1,5 +1,5 @@
-package com.coresquad.paracasa.entity;
 
+package com.coresquad.paracasa.entity;
 
 import javax.persistence.*;
 import java.util.List;
@@ -17,22 +17,24 @@ public class Dish {
     private Float precio;
     private String calorias;
 
-    @ManyToMany(cascade =  CascadeType.ALL)
-    @JoinTable(
-            name = "dish_categories",
-            joinColumns = @JoinColumn(name = "id_categoria", referencedColumnName = "id", nullable = false),
-            inverseJoinColumns = @JoinColumn(name = "id_plato", referencedColumnName = "id", nullable = false)
-    )
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "dish_categories", joinColumns = @JoinColumn(name = "id_categoria", referencedColumnName = "id", nullable = false), inverseJoinColumns = @JoinColumn(name = "id_plato", referencedColumnName = "id", nullable = false))
     private List<Category> categorias;
 
-    @ManyToMany(mappedBy = "platos")
+    @ManyToMany(fetch = FetchType.LAZY, cascade = {
+            CascadeType.DETACH,
+            CascadeType.MERGE,
+            CascadeType.REFRESH,
+            CascadeType.PERSIST
+    }, targetEntity = Menu.class)
+    @JoinTable(name = "menu_dish", joinColumns = @JoinColumn(name = "id_menu", referencedColumnName = "id", nullable = false), inverseJoinColumns = @JoinColumn(name = "id_plato", referencedColumnName = "id", nullable = false), foreignKey = @ForeignKey(ConstraintMode.CONSTRAINT), inverseForeignKey = @ForeignKey(ConstraintMode.CONSTRAINT))
     private List<Menu> menu;
 
     @ManyToOne
     @JoinColumn(name = "id_tipo")
     private Type tipo;
 
-//    GETTERS & SETTERS
+    // GETTERS & SETTERS
 
     public List<Category> getCategorias() {
         return categorias;

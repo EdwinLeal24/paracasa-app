@@ -15,12 +15,13 @@ public class Menu {
     private String descripcion;
     private Float precio;
 
-    @ManyToMany(cascade =  CascadeType.ALL)
-    @JoinTable(
-            name = "menu_dish",
-            joinColumns = @JoinColumn(name = "id_plato", referencedColumnName = "id", nullable = false),
-            inverseJoinColumns = @JoinColumn(name = "id_menu", referencedColumnName = "id", nullable = false)
-    )
+    @ManyToMany(fetch = FetchType.LAZY, cascade = {
+            CascadeType.DETACH,
+            CascadeType.MERGE,
+            CascadeType.REFRESH,
+            CascadeType.PERSIST
+    }, targetEntity = Dish.class)
+    @JoinTable(name = "menu_dish", joinColumns = @JoinColumn(name = "id_plato", referencedColumnName = "id", nullable = false), inverseJoinColumns = @JoinColumn(name = "id_menu", referencedColumnName = "id", nullable = false), foreignKey = @ForeignKey(ConstraintMode.CONSTRAINT), inverseForeignKey = @ForeignKey(ConstraintMode.CONSTRAINT))
     private List<Dish> platos;
 
     public Integer getId() {
