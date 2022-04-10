@@ -34,10 +34,11 @@
                     </div>
                     <div class="item-info-container">
                         <span class="item_desc">
-                            <p th:text="${dish.descripcion}" />
+                            <p th:text="${dish.descripcion} ?: 'Sin descripción!'" />
+
                             <p><strong>Categorias:</strong></p>
-                            <p th:each="category : ${dish.categorias}" th:text="'📍 ' + ${category.categoria}">
-                            </p>
+                            <p th:each="category : ${dish.categorias}" th:text="'📍 ' + ${category.categoria}" />
+
                             <p th:if="${#lists.isEmpty(dish.categorias)}">Este plato no tiene categorias 🤷‍♂️
                             </p>
                         </span>
