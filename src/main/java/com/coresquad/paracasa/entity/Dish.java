@@ -17,8 +17,13 @@ public class Dish {
     private Float precio;
     private String calorias;
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "dish_categories", joinColumns = @JoinColumn(name = "id_categoria", referencedColumnName = "id", nullable = false), inverseJoinColumns = @JoinColumn(name = "id_plato", referencedColumnName = "id", nullable = false))
+    @ManyToMany(fetch = FetchType.LAZY, cascade = {
+            CascadeType.DETACH,
+            CascadeType.MERGE,
+            CascadeType.REFRESH,
+            CascadeType.PERSIST
+    }, targetEntity = Category.class)
+    @JoinTable(name = "dish_categories", joinColumns = @JoinColumn(name = "id_categoria", referencedColumnName = "id", nullable = false), inverseJoinColumns = @JoinColumn(name = "id_plato", referencedColumnName = "id", nullable = false), foreignKey = @ForeignKey(ConstraintMode.CONSTRAINT), inverseForeignKey = @ForeignKey(ConstraintMode.CONSTRAINT))
     private List<Category> categorias;
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = {
@@ -30,7 +35,7 @@ public class Dish {
     @JoinTable(name = "menu_dish", joinColumns = @JoinColumn(name = "id_menu", referencedColumnName = "id", nullable = false), inverseJoinColumns = @JoinColumn(name = "id_plato", referencedColumnName = "id", nullable = false), foreignKey = @ForeignKey(ConstraintMode.CONSTRAINT), inverseForeignKey = @ForeignKey(ConstraintMode.CONSTRAINT))
     private List<Menu> menu;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_tipo")
     private Type tipo;
 
