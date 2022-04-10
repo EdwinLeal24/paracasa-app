@@ -10,9 +10,14 @@ public class Type {
     private Integer id;
 
     @Column(nullable = false)
-    private String tipo; //Entrante, principal, postre, etc..
+    private String tipo; // Entrante, principal, postre, etc..
 
-    @OneToMany(mappedBy = "tipo")
+    @OneToMany(mappedBy = "tipo", fetch = FetchType.LAZY, cascade = {
+            CascadeType.DETACH,
+            CascadeType.MERGE,
+            CascadeType.REFRESH,
+            CascadeType.PERSIST
+    })
     private List<Dish> platos;
 
     public Integer getId() {
