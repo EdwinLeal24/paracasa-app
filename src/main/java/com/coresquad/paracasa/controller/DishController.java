@@ -74,6 +74,8 @@ public class DishController {
         existentDish.setNombre(dish.getNombre());
         existentDish.setDescripcion(dish.getDescripcion());
         existentDish.setCalorias(dish.getCalorias());
+        existentDish.setCategorias(dish.getCategorias());
+        existentDish.setTipo(dish.getTipo());
         existentDish.setPrecio(dish.getPrecio());
 
         // Guarda
