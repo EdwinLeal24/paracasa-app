@@ -1,0 +1,15 @@
+.container-login {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  min-height: 220px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px #9a9a9a;
+  min-width: 490px;
+}
+
+.invalid-credentials {
+  font-weight: bold;
+}

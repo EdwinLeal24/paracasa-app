@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Login - Para Casa!</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" th:href="@{/css/index.css}" />
+    <link rel="stylesheet" th:href="@{/css/categories.css}" />
+    <link rel="stylesheet" th:href="@{/css/login.css}" />
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <a th:href="@{/}">
+            <button type="text" class="btn btn-outline-dark back-button">
+                ⬅️ Volver
+            </button>
+        </a>
+
+        <div class="container-login p-5">
+            <h1 th:unless="${param.logout}" class="text-center">Iniciar Sesión</h1>
+
+            <div th:if="${param.error}">
+                <p class="invalid-credentials">❌ Usuario o contraseña invalidas ❌</p>
+            </div>
+
+            <div th:if="${param.logout}">
+                <h1>Hasta pronto! 👋🏼</h1>
+            </div>
+
+
+
+            <form th:unless="${param.logout}" th:action="@{/login}" method="post">
+                <div class="form-group">
+                    <label> Usuario <input class="form-control mb-3 mt-1" type="text" name="username" placeholder="Homi"
+                            required /> </label>
+                </div>
+                <div class="form-group">
+                    <label> Contraseña <input class="form-control mb-3 mt-1" type="password" name="password"
+                            placeholder="******" required /> </label>
+                </div>
+                <div class="form-group">
+                    <input class="btn btn-success" type="submit" value="Entrar 🗝" />
+                </div>
+            </form>
+        </div>
+
+    </div>
+
+</body>
+
+</html>
