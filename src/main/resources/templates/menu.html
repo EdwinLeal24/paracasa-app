@@ -15,13 +15,11 @@
 </head>
 
 <body>
-  <div class="container-fluid">
+  <div class="container-fluid position-relative">
     <div class="row pt-5 mt-4">
-      <a href="/">
-        <button type="text" class="btn btn-outline-dark back-button">
-          🏠 Home
-        </button>
-      </a>
+      <form th:action="@{/logout}" method="post">
+        <input class="btn btn-outline-dark back-button" type="submit" value="⬅️ Salir" />
+      </form>
 
       <section class="menu-head">
         <h1 class="menu-title mr-5">Nuestros menús</h1>
@@ -31,16 +29,22 @@
       </section>
 
       <section class="menu-nav">
-        <a class="menu-item" th:href="@{/categories}">
-          <button class="btn btn-outline-secondary" type="button">Categorías</button>
-        </a>
-        <a class="menu-item" th:href="@{/dishes}">
-          <button class="btn btn-outline-secondary" type="button">Platos</button>
-        </a>
-        <a class="menu-item" th:href="@{/types}">
-          <button class="btn btn-outline-secondary" type="button">Tipos</button>
-        </a>
+        <div class="d-flex">
+          <a class="menu-item" th:href="@{/categories}">
+            <button class="btn btn-outline-secondary" type="button">Categorías</button>
+          </a>
+          <a class="menu-item" th:href="@{/dishes}">
+            <button class="btn btn-outline-secondary" type="button">Platos</button>
+          </a>
+          <a class="menu-item" th:href="@{/types}">
+            <button class="btn btn-outline-secondary" type="button">Tipos</button>
+          </a>
+        </div>
+        <div class="d-flex user-greeting ml-3">
+          <span th:inline="text">Hola <strong>[[${#httpServletRequest.remoteUser}]]</strong> 😉</span>
+        </div>
       </section>
+
 
     </div>
 

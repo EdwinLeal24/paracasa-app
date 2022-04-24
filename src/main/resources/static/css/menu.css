@@ -4,16 +4,29 @@
   align-items: center;
   width: 100%;
 }
-
+.row {
+  padding-top: 6rem !important;
+}
 .menu-title {
   margin-right: 30px;
 }
 .menu-nav {
   display: flex;
   justify-content: end;
+  align-items: center;
   min-width: 300px;
   position: absolute;
   top: 20px;
+}
+.user-greeting {
+  padding: 0.5em 1.7em;
+  font-size: 18px;
+  border-radius: 0.5em;
+  background: #e8e8e8;
+  border: 1px solid #fff;
+  transition: all 0.3s;
+  box-shadow: 6px 6px 12px #c5c5c5, -6px -6px 12px #ffffff;
+  margin-left: 8px;
 }
 .container-menus {
   display: flex;
