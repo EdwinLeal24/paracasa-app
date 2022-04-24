@@ -24,6 +24,15 @@ public class Menu {
     @JoinTable(name = "menu_dish", joinColumns = @JoinColumn(name = "id_plato", referencedColumnName = "id", nullable = false), inverseJoinColumns = @JoinColumn(name = "id_menu", referencedColumnName = "id", nullable = false), foreignKey = @ForeignKey(ConstraintMode.CONSTRAINT), inverseForeignKey = @ForeignKey(ConstraintMode.CONSTRAINT))
     private List<Dish> platos;
 
+    @ManyToMany(fetch = FetchType.LAZY, cascade = {
+            CascadeType.DETACH,
+            CascadeType.MERGE,
+            CascadeType.REFRESH,
+            CascadeType.PERSIST
+    }, targetEntity = Dish.class)
+    @JoinTable(name = "pedido_menu", joinColumns = @JoinColumn(name = "id_pedido", referencedColumnName = "id", nullable = false), inverseJoinColumns = @JoinColumn(name = "id_menu", referencedColumnName = "id", nullable = false), foreignKey = @ForeignKey(ConstraintMode.CONSTRAINT), inverseForeignKey = @ForeignKey(ConstraintMode.CONSTRAINT))
+    private List<Dish> pedidos;
+
     public Integer getId() {
         return id;
     }
@@ -62,5 +71,13 @@ public class Menu {
 
     public void setPlatos(List<Dish> platos) {
         this.platos = platos;
+    }
+
+    public List<Dish> getPedidos() {
+        return pedidos;
+    }
+
+    public void setPedidos(List<Dish> pedidos) {
+        this.pedidos = pedidos;
     }
 }
