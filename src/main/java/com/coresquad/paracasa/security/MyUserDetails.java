@@ -7,7 +7,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.Collections;
 
 public class MyUserDetails implements UserDetails {
     private User user;
@@ -16,15 +15,10 @@ public class MyUserDetails implements UserDetails {
         this.user = user;
     }
 
-//    @Override
-//    public Collection<? extends GrantedAuthority> getAuthorities() {
-//        SimpleGrantedAuthority authority = new SimpleGrantedAuthority(user.getRoll());
-//        return Arrays.asList(authority);
-//    }
-
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return Collections.emptyList();
+        SimpleGrantedAuthority authority = new SimpleGrantedAuthority(user.getRoll().toString());
+        return Arrays.asList(authority);
     }
 
     @Override
