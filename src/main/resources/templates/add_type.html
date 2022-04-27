@@ -13,7 +13,7 @@
 
 <body>
   <div class="container">
-    <a th:href="@{/types}">
+    <a th:href="@{/admin/types}">
       <button type="text" class="btn btn-outline-dark back-button">
         ⬅️ Volver
       </button>
@@ -22,7 +22,7 @@
     <div class="container-types create-type p-5">
       <h1 class="text-center"> Añadir nuevo tipo </h1>
       <div class="card-body">
-        <form th:action="@{/types}" th:object="${type}" method="POST">
+        <form th:action="@{/admin/types}" th:object="${type}" method="POST">
           <div class="form-group create-form">
             <label>Tipo</label>
             <input type="text" name="type" th:field="*{tipo}" class="form-control mb-3"

@@ -13,14 +13,14 @@
 
 <body>
   <div class="container">
-    <a th:href="@{/types}">
+    <a th:href="@{/admin/types}">
       <button type="text" class="btn btn-outline-dark back-button">
         ⬅️ Volver
       </button>
     </a>
     <div class="container-types p-5">
       <h1 class="text-center"> Editar tipo </h1>
-      <form th:action="@{/types/{id} (id=${type.id})}" th:object="${type}" method="POST">
+      <form th:action="@{/admin/types/{id} (id=${type.id})}" th:object="${type}" method="POST">
         <div class="form-group create-form">
           <label class="edit-label">Nuevo nombre</label>
           <input type="text" name="type" th:field="*{tipo}" class="form-control mb-3 mt-1" placeholder="Postre" />

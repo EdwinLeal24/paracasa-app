@@ -14,7 +14,7 @@
 
 <body>
   <div class="container">
-    <a th:href="@{/dishes}">
+    <a th:href="@{/admin/dishes}">
       <button type="text" class="btn btn-outline-dark back-button">
         ⬅️ Volver
       </button>
@@ -24,7 +24,7 @@
       <h1 class="text-center">Añadir nuevo plato </h1>
       <div class="create-dish-form">
 
-        <form th:action="@{/dishes}" th:object="${dish}" method="POST">
+        <form th:action="@{/admin/dishes}" th:object="${dish}" method="POST">
           <!-- INPUT FOR DISH NAME -->
           <div class="form-group create-form">
             <label>Plato</label>

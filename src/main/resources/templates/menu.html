@@ -1,3 +1,5 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <!DOCTYPE html>
 <html lang="es">
 
@@ -23,25 +25,25 @@
 
       <section class="menu-head">
         <h1 class="menu-title mr-5">Nuestros menús</h1>
-        <a th:href="@{/menu/create}">
+        <a sec:authorize="hasAuthority('ADMIN')" th:href="@{/admin/menu/create}">
           <button class="btn btn-outline-dark" type="button">✚</button>
         </a>
       </section>
 
       <section class="menu-nav">
-        <div class="d-flex">
-          <a class="menu-item" th:href="@{/categories}">
+        <div class="d-flex" sec:authorize="hasAuthority('ADMIN')">
+          <a class="menu-item" th:href="@{/admin/categories}">
             <button class="btn btn-outline-secondary" type="button">Categorías</button>
           </a>
-          <a class="menu-item" th:href="@{/dishes}">
+          <a class="menu-item" th:href="@{/admin/dishes}">
             <button class="btn btn-outline-secondary" type="button">Platos</button>
           </a>
-          <a class="menu-item" th:href="@{/types}">
+          <a class="menu-item" th:href="@{/admin/types}">
             <button class="btn btn-outline-secondary" type="button">Tipos</button>
           </a>
         </div>
         <div class="d-flex user-greeting ml-3">
-          <span th:inline="text">Hola <strong>[[${#httpServletRequest.remoteUser}]]</strong> 😉</span>
+          <span th:inline="text">Hola <strong sec:authentication="name"></strong> 😉</span>
         </div>
       </section>
 
@@ -49,7 +51,7 @@
     </div>
 
 
-    <div class="container-menus mt-4">
+    <ul class="container-menus mt-4">
 
       <li th:each="menu: ${menus}" class="my-2 py-2 menu-item">
         <h4 class="item-title">
@@ -62,23 +64,41 @@
           <p th:if="${#lists.isEmpty(menu.platos)}">Parece que este menu no tiene ningun plato! Corre a añadir 🏃‍♂️
           </p>
         </div>
+
         <div class="item-footer">
           <p th:text="'Precio: ' + ${menu.precio} + ' €'" />
-          <div>
-            <a th:href="@{/menu/edit/{id} (id=${menu.id})}">
+          <div sec:authorize="hasAuthority('ADMIN')">
+            <a th:href="@{/admin/menu/edit/{id} (id=${menu.id})}">
               <span class="icon">✏️</span>
             </a>
             <button type="button">
-              <a th:href="@{/menu/{id} (id=${menu.id})}">
+              <a th:href="@{/admin/menu/{id} (id=${menu.id})}">
                 <span class="icon">🗑</span>
               </a>
             </button>
           </div>
+
+          <div sec:authorize="hasAuthority('USER')">
+            <button type="button">
+              <a th:href="@{/pedido/{id} (id=${menu.id})}">
+                <span class="icon">✚</span>
+              </a>
+            </button>
+          </div>
         </div>
+
       </li>
-      <h4 th:if="${#lists.isEmpty(menus)}">Aun no se ha creado ningun menú! 😢</h4>
-    </div>
+    </ul>
+    <h4 th:if="${#lists.isEmpty(menus)}">Aun no se ha creado ningun menú! 😢</h4>
+  </div>
   </div>
 </body>
 
 </html>
+
+
+<!-- 
+  two ways of get  the role:
+  <span sec:authentication="principal.authorities"></span>
+  <span>[[${#authentication.getPrincipal().getRoll()}]]</span>
+ -->

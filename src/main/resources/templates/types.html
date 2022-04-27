@@ -22,7 +22,7 @@
     <section class="container-types">
       <div class="container-types_head">
         <h1 class="list-title">Tipos de plato</h1>
-        <a th:href="@{/type/add}">
+        <a th:href="@{/admin/type/add}">
           <button class="btn btn-outline-dark" type="button">✚</button>
         </a>
       </div>
@@ -30,12 +30,12 @@
         <li th:each="type: ${types}" class="my-2 list-items">
           <span class="mr-3" th:text="${type.tipo}" />
           <div class="item-action">
-            <a th:href="@{/types/edit/{id} (id=${type.id})}">
+            <a th:href="@{/admin/types/edit/{id} (id=${type.id})}">
               <span class="text-end">✏️</span>
             </a>
           </div>
           <button type="button" class="delete-button">
-            <a th:href="@{/types/{id} (id=${type.id})}">
+            <a th:href="@{/admin/types/{id} (id=${type.id})}">
               ✖️
             </a>
           </button>

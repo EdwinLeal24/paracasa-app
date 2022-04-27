@@ -22,7 +22,7 @@
         <section class="container-dishes">
             <div class="container-dishes_head">
                 <h1 class="list-title">Lista de Platos</h1>
-                <a th:href="@{/dishes/new}">
+                <a th:href="@{/admin/dishes/new}">
                     <button class="btn btn-outline-dark" type="button">✚</button>
                 </a>
             </div>
@@ -50,11 +50,11 @@
                         <p th:text="${dish.precio} + ' €'" />
 
                         <div class="item-action">
-                            <a th:href="@{/dishes/edit/{id} (id=${dish.id})}">
+                            <a th:href="@{/admin/dishes/edit/{id} (id=${dish.id})}">
                                 <span class="text-end">✏️</span>
                             </a>
                             <button type="button">
-                                <a th:href="@{/dishes/{id} (id=${dish.id})}">
+                                <a th:href="@{/admin/dishes/{id} (id=${dish.id})}">
                                     <span>🗑</span>
                                 </a>
                             </button>

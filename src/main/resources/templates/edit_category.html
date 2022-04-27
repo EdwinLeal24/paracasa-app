@@ -13,14 +13,14 @@
 
 <body>
   <div class="container">
-    <a th:href="@{/categories}">
+    <a th:href="@{/admin/categories}">
       <button type="text" class="btn btn-outline-dark back-button">
         ⬅️ Volver
       </button>
     </a>
     <div class="container-categories p-5">
       <h1 class="text-center"> Editar categoría </h1>
-      <form th:action="@{/categories/{id} (id=${category.id})}" th:object="${category}" method="POST">
+      <form th:action="@{/admin/categories/{id} (id=${category.id})}" th:object="${category}" method="POST">
         <div class="form-group create-form">
           <label class="edit-label">Nuevo nombre</label>
           <input type="text" name="category" th:field="*{categoria}" class="form-control mb-3 mt-1"

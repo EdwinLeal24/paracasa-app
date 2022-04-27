@@ -22,7 +22,7 @@
     <div class="container-form-menu">
       <h1 class="text-center"> Editando: <span th:text="${menu.nombre}" /></h1>
       <div class="card-body">
-        <form th:action="@{/menu/{id} (id=${menu.id})}" th:object="${menu}" method="POST">
+        <form th:action="@{/admin/menu/{id} (id=${menu.id})}" th:object="${menu}" method="POST">
 
           <!-- NOMBRE DEL MENU -->
           <div class="form-group">

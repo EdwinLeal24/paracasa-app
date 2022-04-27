@@ -13,7 +13,7 @@
 
 <body>
   <div class="container">
-    <a th:href="@{/categories}">
+    <a th:href="@{/admin/categories}">
       <button type="text" class="btn btn-outline-dark back-button">
         ⬅️ Volver
       </button>
@@ -22,7 +22,7 @@
     <div class="container-categories create-category p-5">
       <h1 class="text-center"> Añadir nueva categoría </h1>
       <div class="card-body">
-        <form th:action="@{/categories}" th:object="${category}" method="POST">
+        <form th:action="@{/admin/categories}" th:object="${category}" method="POST">
           <div class="form-group create-form">
             <label>Categoría</label>
             <input type="text" name="category" th:field="*{categoria}" class="form-control mb-3"

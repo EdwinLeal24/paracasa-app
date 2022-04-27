@@ -14,7 +14,7 @@
 
 <body>
   <div class="container">
-    <a th:href="@{/dishes}">
+    <a th:href="@{/admin/dishes}">
       <button type="text" class="btn btn-outline-dark back-button">
         ⬅️ Volver
       </button>
@@ -23,7 +23,7 @@
       <h1 class="text-center"> Editar Plato</h1>
 
       <div class="create-dish-form">
-        <form th:action="@{/dishes/{id} (id=${dish.id})}" th:object="${dish}" method="POST">
+        <form th:action="@{/admin/dishes/{id} (id=${dish.id})}" th:object="${dish}" method="POST">
 
           <div class="form-group create-form">
             <label>Nuevo nombre</label>

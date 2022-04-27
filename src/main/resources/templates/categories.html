@@ -22,7 +22,7 @@
         <section class="container-categories py-3">
             <div class="container-categories_head">
                 <h1 class="list-title">Lista de categorias</h1>
-                <a th:href="@{/categories/new}">
+                <a th:href="@{/admin/categories/new}">
                     <button class="btn btn-outline-dark" type="button">✚</button>
                 </a>
             </div>
@@ -30,11 +30,11 @@
                 <li th:each="category: ${categories}" class="my-2 list-item">
                     <span th:text="${category.categoria}" />
                     <div class="item-action">
-                        <a th:href="@{/categories/edit/{id} (id=${category.id})}">
+                        <a th:href="@{/admin/categories/edit/{id} (id=${category.id})}">
                             <span class="text-end">✏️</span>
                         </a>
                         <button type="button">
-                            <a th:href="@{/categories/{id} (id=${category.id})}">
+                            <a th:href="@{/admin/categories/{id} (id=${category.id})}">
                                 <span>🗑</span>
                             </a>
                         </button>
