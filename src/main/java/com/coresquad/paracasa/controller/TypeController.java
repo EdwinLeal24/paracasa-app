@@ -17,34 +17,33 @@ public class TypeController {
     @Autowired
     private TypeRepo typeRepo;
 
-    @GetMapping("/types")
+    @GetMapping("/admin/types")
     public String getAllTypes(Model model) {
         model.addAttribute("types", typeRepo.findAll());
         return "types";
     }
 
-    @GetMapping("/type/add")
+    @GetMapping("/admin/type/add")
     public String createType(Model model) {
         Type type = new Type();
         model.addAttribute("type", type);
         return "add_type";
     }
 
-    @PostMapping("/types")
+    @PostMapping("/admin/types")
     public String saveType(@ModelAttribute("type") Type type) {
         typeRepo.save(type);
-        return "redirect:/types";
+        return "redirect:/admin/types";
     }
 
-    @GetMapping("/types/edit/{id}")
+    @GetMapping("/admin/types/edit/{id}")
     public String editType(@PathVariable Integer id, Model model) throws TypeNotFoundException {
         Type type = typeRepo.findById(id).orElseThrow(() -> new TypeNotFoundException(id));
         model.addAttribute("type", type);
         return "edit_type";
     }
 
-
-    @PostMapping("/types/{id}")
+    @PostMapping("/admin/types/{id}")
     public String updateType(@PathVariable Integer id, @ModelAttribute("type") Type type) throws TypeNotFoundException {
         Type dbType = typeRepo.findById(id).orElseThrow(() -> new TypeNotFoundException(id));
 
@@ -52,12 +51,12 @@ public class TypeController {
         dbType.setTipo(type.getTipo());
 
         typeRepo.save(dbType);
-        return "redirect:/types";
+        return "redirect:/admin/types";
     }
 
-    @GetMapping("/types/{id}")
+    @GetMapping("/admin/types/{id}")
     public String removeType(@PathVariable Integer id) {
         typeRepo.deleteById(id);
-        return "redirect:/types";
+        return "redirect:/admin/types";
     }
 }

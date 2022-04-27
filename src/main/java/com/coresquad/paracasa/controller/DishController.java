@@ -26,7 +26,7 @@ public class DishController {
     private TypeRepo typeRepo;
 
     // Lista todos los platos
-    @GetMapping("/dishes")
+    @GetMapping("/admin/dishes")
     public String getAllUsers(Model model) {
         model.addAttribute("dishes", dishRepo.findAll());
         model.addAttribute("types", typeRepo.findAll());
@@ -35,7 +35,7 @@ public class DishController {
     }
 
     // form para crear nuevo plato
-    @GetMapping("/dishes/new")
+    @GetMapping("/admin/dishes/new")
     public String createDish(Model model) {
 
         Dish dish = new Dish(); // Objeto que guardara los valores
@@ -47,14 +47,14 @@ public class DishController {
     }
 
     // guarda un plato
-    @PostMapping("/dishes")
+    @PostMapping("/admin/dishes")
     public String saveDish(@ModelAttribute("dish") Dish dish) {
         dishRepo.save(dish);
-        return "redirect:/dishes";
+        return "redirect:/admin/dishes";
     }
 
     // form para editar una categoria
-    @GetMapping(path = "/dishes/edit/{id}")
+    @GetMapping(path = "/admin/dishes/edit/{id}")
     public String editDishForm(@PathVariable Integer id, Model model) {
         Dish dish = dishRepo.findById(id).orElseThrow(() -> new DishNotFoundException(id));
         model.addAttribute("dish", dish);
@@ -64,7 +64,7 @@ public class DishController {
     }
 
     // Guarda una categoria editada
-    @PostMapping("/dishes/{id}")
+    @PostMapping("/admin/dishes/{id}")
     public String updateCategory(@PathVariable Integer id, @ModelAttribute("dish") Dish dish, Model model) {
         // Saca el plato de la BD por su ID
         Dish existentDish = dishRepo.findById(id).orElseThrow(() -> new DishNotFoundException(id));
@@ -80,14 +80,14 @@ public class DishController {
 
         // Guarda
         dishRepo.save(existentDish);
-        return "redirect:/dishes";
+        return "redirect:/admin/dishes";
     }
 
     // Elimina un plato
-    @GetMapping("/dishes/{id}")
+    @GetMapping("/admin/dishes/{id}")
     public String deleteDish(@PathVariable Integer id) {
         dishRepo.deleteById(id);
-        return "redirect:/dishes";
+        return "redirect:/admin/dishes";
     }
 
 }

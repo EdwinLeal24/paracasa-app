@@ -30,7 +30,7 @@ public class MenuControlle {
     }
 
     // Muestra el formulario de crear un menu
-    @GetMapping("/menu/create")
+    @GetMapping("/admin/menu/create")
     public String createMneu(Model model) {
         Menu menu = new Menu();
 
@@ -41,14 +41,14 @@ public class MenuControlle {
     }
 
     // Guarda el menu creado
-    @PostMapping("/menu")
+    @PostMapping("/admin/menu")
     public String saveMenu(@ModelAttribute("menu") Menu menu) {
         menuRepo.save(menu);
         return "redirect:/menus";
     }
 
     // Muestra el form para editar un menun
-    @GetMapping("/menu/edit/{id}")
+    @GetMapping("/admin/menu/edit/{id}")
     public String editMenu(@PathVariable Integer id, Model model) throws MenuNotFoundException {
         Menu menu = menuRepo.findById(id).orElseThrow(() -> new MenuNotFoundException(id));
         model.addAttribute("menu", menu);
@@ -57,7 +57,7 @@ public class MenuControlle {
     }
 
     // Guarda un menu editado
-    @PostMapping("/menu/{id}")
+    @PostMapping("/admin/menu/{id}")
     public String updateMenu(@PathVariable Integer id, @ModelAttribute("menu") Menu menu) throws MenuNotFoundException {
         Menu dbMenu = menuRepo.findById(id).orElseThrow(() -> new MenuNotFoundException(id));
 
@@ -72,7 +72,7 @@ public class MenuControlle {
     }
 
     // Elimina un menu
-    @GetMapping("/menu/{id}")
+    @GetMapping("/admin/menu/{id}")
     public String removeMenu(@PathVariable Integer id) {
         menuRepo.deleteById(id);
         return "redirect:/menus";

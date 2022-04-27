@@ -1,5 +1,7 @@
 package com.coresquad.paracasa.entity;
 
+import com.coresquad.paracasa.enums.Rol;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -30,7 +32,8 @@ public class User {
     @JoinTable(name = "user_pedido", joinColumns = @JoinColumn(name = "id_pedido", referencedColumnName = "id", nullable = false), inverseJoinColumns = @JoinColumn(name = "id_user", referencedColumnName = "id", nullable = false), foreignKey = @ForeignKey(ConstraintMode.CONSTRAINT), inverseForeignKey = @ForeignKey(ConstraintMode.CONSTRAINT))
     private List<Pedido> pedidos;
 
-    private String roll;
+    @Enumerated(EnumType.STRING)
+    private Rol roll;
 
     public Integer getId() {
         return id;
@@ -80,11 +83,11 @@ public class User {
         this.pedidos = pedidos;
     }
 
-    public String getRoll() {
+    public Rol getRoll() {
         return roll;
     }
 
-    public void setRoll(String roll) {
+    public void setRoll(Rol roll) {
         this.roll = roll;
     }
 }

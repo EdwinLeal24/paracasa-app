@@ -1,6 +1,7 @@
 package com.coresquad.paracasa.controller;
 
 import com.coresquad.paracasa.entity.User;
+import com.coresquad.paracasa.enums.Rol;
 import com.coresquad.paracasa.repository.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -31,6 +32,7 @@ public class UserController {
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         String encodedPassword = passwordEncoder.encode(user.getPassword());
         user.setPassword(encodedPassword);
+        user.setRoll(Rol.USER);
         userRepo.save(user);
         return "redirect:/register?success";
     }
