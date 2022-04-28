@@ -22,6 +22,9 @@
 
     <div class="container-pedidos create-pedido p-5">
       <h1 class="text-center">Menus Disponibles</h1>
+      <div th:if="${param.success}">
+        <p class="success-pedido">🎉 Tú pedido se empieza a preparar 🎉</p>
+      </div>
 
       <div class="create-pedido-form">
 

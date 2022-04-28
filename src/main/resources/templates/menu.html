@@ -23,32 +23,38 @@
         <input class="btn btn-outline-dark back-button" type="submit" value="⬅️ Salir" />
       </form>
 
-      <section class="menu-head">
+      <section sec:authorize="hasAuthority('ADMIN')" class="menu-head">
         <h1 class="menu-title mr-5">Nuestros menús</h1>
-        <a sec:authorize="hasAuthority('ADMIN')" th:href="@{/admin/menu/create}">
+        <a th:href="@{/admin/menu/create}">
           <button class="btn btn-outline-dark" type="button">✚</button>
         </a>
-        <a sec:authorize="hasAuthority('USER')" th:href="@{/user/pedido/create}">
+      </section>
+
+      <section sec:authorize="hasAuthority('USER')" class="menu-head_user">
+        <h1>MENÚS</h1>
+        <a th:href="@{/user/pedido/create}">
           <button class="btn btn-outline-dark" type="button">Realizar pedido 📝</button>
         </a>
       </section>
 
 
       <section class="menu-nav">
-        <div class="d-flex" sec:authorize="hasAuthority('ADMIN')">
-          <a class="menu-item" th:href="@{/admin/categories}">
+        <div class="d-flex nav-list" sec:authorize="hasAuthority('ADMIN')">
+          <a class="nav-item" th:href="@{/admin/categories}">
             <button class="btn btn-outline-secondary" type="button">Categorías</button>
           </a>
-          <a class="menu-item" th:href="@{/admin/dishes}">
+          <a class="nav-item" th:href="@{/admin/dishes}">
             <button class="btn btn-outline-secondary" type="button">Platos</button>
           </a>
-          <a class="menu-item" th:href="@{/admin/types}">
+          <a class="nav-item" th:href="@{/admin/types}">
             <button class="btn btn-outline-secondary" type="button">Tipos</button>
           </a>
         </div>
-        <div class="d-flex user-greeting ml-3">
-          <span th:inline="text">Hola <strong sec:authentication="name"></strong> 😉</span>
-        </div>
+        <a th:href="@{/profile}">
+          <div class="d-flex user-greeting ml-3">
+            <span th:inline="text">Hola <strong sec:authentication="name"></strong> 😉</span>
+          </div>
+        </a>
       </section>
 
 
@@ -58,7 +64,7 @@
     <ul class="container-menus mt-4">
 
       <li th:each="menu: ${menus}" class="my-2 py-2 menu-item">
-        <h4 class="item-title">
+        <h4 class="item-title mt-3">
           <span th:text="${menu.nombre}" />
         </h4>
         <div class="item-body" th:if="${menu.descripcion}">
