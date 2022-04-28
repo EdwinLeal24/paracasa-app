@@ -38,6 +38,9 @@
 }
 
 .menu-item:hover {
-  /* Pull the button upwards when hovered */
   transform: translateX(-0.33em);
+}
+
+.success-pedido {
+  font-weight: bold;
 }
