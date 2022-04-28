@@ -1,0 +1,58 @@
+.container {
+  width: 100%;
+  gap: 50px;
+}
+
+.container-profile,
+.pedidos-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 40%;
+  min-height: 220px;
+  border-radius: 22px;
+  background: linear-gradient(145deg, #ffffff, #e6e6e6);
+  box-shadow: 35px 35px 55px #bdbdbd, -35px -35px 55px #ffffff;
+  min-width: 650px;
+}
+.roll-info {
+  color: red;
+  font-size: 8px;
+}
+
+.pedidos-container {
+  min-width: 300px;
+  max-width: 300px;
+  min-height: 540px;
+  justify-content: start;
+  padding: 10px 20px;
+  text-align: center;
+}
+
+.pedidos-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+.pedidos-list > li {
+  padding: 5px 10px;
+  font-weight: bold;
+  background: #959595e0;
+  color: white;
+  border: 3px solid #8a8a8a;
+  text-align: start;
+}
+
+p {
+  margin: 0;
+}
+
+label,
+h1 {
+  font-weight: bold;
+}
