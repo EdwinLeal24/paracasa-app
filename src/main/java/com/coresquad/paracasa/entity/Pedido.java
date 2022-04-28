@@ -18,14 +18,9 @@ public class Pedido {
     @JoinTable(name = "pedido_menu", joinColumns = @JoinColumn(name = "id_menu", referencedColumnName = "id", nullable = false), inverseJoinColumns = @JoinColumn(name = "id_pedido", referencedColumnName = "id", nullable = false), foreignKey = @ForeignKey(ConstraintMode.CONSTRAINT), inverseForeignKey = @ForeignKey(ConstraintMode.CONSTRAINT))
     private List<Menu> menus;
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = {
-            CascadeType.DETACH,
-            CascadeType.MERGE,
-            CascadeType.REFRESH,
-            CascadeType.PERSIST
-    }, targetEntity = User.class)
-    @JoinTable(name = "user_pedido", joinColumns = @JoinColumn(name = "id_user", referencedColumnName = "id", nullable = false), inverseJoinColumns = @JoinColumn(name = "id_pedido", referencedColumnName = "id", nullable = false), foreignKey = @ForeignKey(ConstraintMode.CONSTRAINT), inverseForeignKey = @ForeignKey(ConstraintMode.CONSTRAINT))
-    private List<User> users;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_user")
+    private User user;
 
     public Integer getId() {
         return id;
@@ -43,11 +38,11 @@ public class Pedido {
         this.menus = menus;
     }
 
-    public List<User> getUsers() {
-        return users;
+    public User getUser() {
+        return user;
     }
 
-    public void setUsers(List<User> users) {
-        this.users = users;
+    public void setUser(User user) {
+        this.user = user;
     }
 }

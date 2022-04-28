@@ -3,7 +3,6 @@ package com.coresquad.paracasa.entity;
 import com.coresquad.paracasa.enums.Rol;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 public class User {
@@ -22,15 +21,6 @@ public class User {
 
     @Column(nullable = false)
     private String password;
-
-    @ManyToMany(fetch = FetchType.LAZY, cascade = {
-            CascadeType.DETACH,
-            CascadeType.MERGE,
-            CascadeType.REFRESH,
-            CascadeType.PERSIST
-    }, targetEntity = Pedido.class)
-    @JoinTable(name = "user_pedido", joinColumns = @JoinColumn(name = "id_pedido", referencedColumnName = "id", nullable = false), inverseJoinColumns = @JoinColumn(name = "id_user", referencedColumnName = "id", nullable = false), foreignKey = @ForeignKey(ConstraintMode.CONSTRAINT), inverseForeignKey = @ForeignKey(ConstraintMode.CONSTRAINT))
-    private List<Pedido> pedidos;
 
     @Enumerated(EnumType.STRING)
     private Rol roll;
@@ -73,14 +63,6 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public List<Pedido> getPedidos() {
-        return pedidos;
-    }
-
-    public void setPedidos(List<Pedido> pedidos) {
-        this.pedidos = pedidos;
     }
 
     public Rol getRoll() {
