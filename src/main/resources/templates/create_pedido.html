@@ -36,8 +36,6 @@
               <option class="menu-item" th:each="menu: ${menus}" th:value="${menu.id}">
                 <p th:text="${menu.nombre}"></p>
                 -
-                <p th:text="${menu.descripcion}"></p>
-                -
                 <p th:text="${menu.precio} + €"></p>
               </option>
             </select>
