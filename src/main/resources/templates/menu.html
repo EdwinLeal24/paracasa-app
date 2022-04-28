@@ -28,7 +28,11 @@
         <a sec:authorize="hasAuthority('ADMIN')" th:href="@{/admin/menu/create}">
           <button class="btn btn-outline-dark" type="button">✚</button>
         </a>
+        <a sec:authorize="hasAuthority('USER')" th:href="@{/user/pedido/create}">
+          <button class="btn btn-outline-dark" type="button">Realizar pedido 📝</button>
+        </a>
       </section>
+
 
       <section class="menu-nav">
         <div class="d-flex" sec:authorize="hasAuthority('ADMIN')">
@@ -78,13 +82,6 @@
             </button>
           </div>
 
-          <div sec:authorize="hasAuthority('USER')">
-            <button type="button">
-              <a th:href="@{/pedido/{id} (id=${menu.id})}">
-                <span class="icon">✚</span>
-              </a>
-            </button>
-          </div>
         </div>
 
       </li>

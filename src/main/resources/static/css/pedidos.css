@@ -1,0 +1,43 @@
+.container-pedidos {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  min-height: 220px;
+  border-radius: 22px;
+  background: linear-gradient(145deg, #ffffff, #e6e6e6);
+  box-shadow: 35px 35px 55px #bdbdbd, -35px -35px 55px #ffffff;
+  min-width: 600px;
+}
+
+.create-pedido {
+  min-height: 300px;
+}
+
+.create-pedido-form {
+  width: 100%;
+}
+
+.form-select {
+  border: 0;
+  background-color: transparent;
+}
+
+.form-select:focus {
+  box-shadow: none;
+}
+
+.menu-item {
+  margin: 15px 0;
+  border: 1px solid black;
+  border-radius: 4px;
+  padding: 15px;
+  text-transform: capitalize;
+  font-weight: bold;
+}
+
+.menu-item:hover {
+  /* Pull the button upwards when hovered */
+  transform: translateX(-0.33em);
+}

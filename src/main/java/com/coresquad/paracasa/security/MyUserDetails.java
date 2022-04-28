@@ -1,6 +1,7 @@
 package com.coresquad.paracasa.security;
 
 import com.coresquad.paracasa.entity.User;
+import com.coresquad.paracasa.enums.Rol;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -29,6 +30,10 @@ public class MyUserDetails implements UserDetails {
     @Override
     public String getUsername() {
         return user.getUsuario();
+    }
+
+    public Rol getRoll() {
+        return user.getRoll();
     }
 
     @Override
