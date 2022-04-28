@@ -27,13 +27,6 @@ public class PedidoController {
     @Autowired
     private UserRepo userRepo;
 
-    // Muestra los pedidos
-    public String getAllPedido(Model model) {
-        model.addAttribute("pedidos", pedidoRepo.findAll());
-
-        return "menu";
-    }
-
     // Muestra el formulario de crear un pedido
     @GetMapping("/user/pedido/create")
     public String createPedido(Model model) {
@@ -53,7 +46,7 @@ public class PedidoController {
         User user = userRepo.findById(userId).orElseThrow(() -> new UsernameNotFoundException("Usuario " + username + " no encontrado"));
         pedido.setUser(user);
         pedidoRepo.save(pedido);
-        return "redirect:/menus";
+        return "redirect:/user/pedido/create?success";
     }
 
 
