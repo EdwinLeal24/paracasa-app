@@ -37,7 +37,7 @@ public class UserController {
         return "register";
     }
 
-    // Guarda el menu creado
+    // Guarda el usuario creado
     @PostMapping("/register")
     public String saveUser(@ModelAttribute("user") User user) {
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();

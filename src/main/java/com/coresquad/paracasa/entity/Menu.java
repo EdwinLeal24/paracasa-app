@@ -31,7 +31,7 @@ public class Menu {
             CascadeType.PERSIST
     }, targetEntity = Dish.class)
     @JoinTable(name = "pedido_menu", joinColumns = @JoinColumn(name = "id_pedido", referencedColumnName = "id", nullable = false), inverseJoinColumns = @JoinColumn(name = "id_menu", referencedColumnName = "id", nullable = false), foreignKey = @ForeignKey(ConstraintMode.CONSTRAINT), inverseForeignKey = @ForeignKey(ConstraintMode.CONSTRAINT))
-    private List<Dish> pedidos;
+    private List<Pedido> pedidos;
 
     public Integer getId() {
         return id;
@@ -73,11 +73,11 @@ public class Menu {
         this.platos = platos;
     }
 
-    public List<Dish> getPedidos() {
+    public List<Pedido> getPedidos() {
         return pedidos;
     }
 
-    public void setPedidos(List<Dish> pedidos) {
+    public void setPedidos(List<Pedido> pedidos) {
         this.pedidos = pedidos;
     }
 }
